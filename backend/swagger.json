@@ -1,0 +1,309 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Voting System",
+    "description": "Voting System API",
+    "license": {
+      "name": "MIT",
+      "url": "https://opensource.org/licenses/MIT"
+    }
+  },
+  "host": "localhost:8080",
+  "basePath": "/v1",
+  "schemes": [
+    "http"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/user/verification": {
+      "post": {
+        "tags": [
+          "users"
+        ],
+        "parameters": [
+          {
+            "name": "user",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/userVerification"
+            }
+          }
+        ],
+        "summary": "HKID verification",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/user/vote": {
+      "post": {
+        "tags": [
+          "users"
+        ],
+        "parameters": [
+          {
+            "name": "user",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/userVote"
+            }
+          },
+          {
+            "name": "token",
+            "in": "header",
+            "description":"jwt token",
+            "schema": {
+              "type": "string",
+              "example": "go user/verification to get the token"
+            }
+          }
+        ],
+        "summary": "user voting",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/user/voteRecord": {
+      "get": {
+        "tags": [
+          "users"
+        ],
+        "parameters": [
+          {
+            "name": "token",
+            "in": "header",
+            "description":"jwt token",
+            "schema": {
+              "type": "string",
+              "example": "go user/verification to get the token"
+            }
+          }
+        ],
+        "summary": "user vote Record",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/campaign": {
+      "get": {
+        "tags": [
+          "campaign"
+        ],
+        "parameters": [
+          {
+            "name": "start_time",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "example": "2020-12-01"
+            }
+          },
+          {
+            "name": "end_time",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "example": "2020-12-04"
+            }
+          },
+          {
+            "name": "order",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "example": "count"
+            }
+          }
+        ],
+        "summary": "Get all campaign",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/campaigns"
+            }
+          }
+        }
+      }
+    },
+    "/campaign/{id}": {
+      "get": {
+        "tags": [
+          "campaign"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description":"id of campaign",
+            "schema": {
+              "type": "integer",
+              "example": "1"
+            }
+          },
+          {
+            "name": "token",
+            "in": "header",
+            "description":"jwt token",
+            "schema": {
+              "type": "string",
+              "example": "go user/verification to get the token"
+            }
+          }
+        ],
+        "summary": "Get a campaign by id",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/campaign"
+            }
+          }
+        }
+      }
+    },
+    "/campaign/{id}/result": {
+      "get": {
+        "tags": [
+          "campaign"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description":"id of campaign",
+            "schema": {
+              "type": "integer",
+              "example": "1"
+            }
+          },
+          {
+            "name": "token",
+            "in": "header",
+            "description":"jwt token",
+            "schema": {
+              "type": "string",
+              "example": "go user/verification to get the token"
+            }
+          }
+        ],
+        "summary": "Get a campaign result by id",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/campaign"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "userVerification": {
+      "properties": {
+        "hkid": {
+          "type": "string"
+        }
+      }
+    },
+    "userVote": {
+      "properties": {
+        "campaign_id": {
+          "type": "integer"
+        },
+        "option_id": {
+          "type": "integer"
+        }
+      }
+    },
+    "campaigns": {
+      "type": "array",
+      "$ref": "#/definitions/campaign"
+    },
+    "campaign":{
+      "properties": {
+        "id": {
+          "type": "integer",
+          "uniqueItems": true
+        },
+        "name": {
+          "type": "string"
+        },
+        "start_time": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "end_time": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "User": {
+      "required": [
+        "name",
+        "_id",
+        "companies"
+      ],
+      "properties": {
+        "_id": {
+          "type": "integer",
+          "uniqueItems": true
+        },
+        "isPublic": {
+          "type": "boolean"
+        },
+        "name": {
+          "type": "string"
+        },
+        "books": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "amount": {
+                "type": "number"
+              }
+            }
+          }
+        },
+        "companies": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "Users": {
+      "type": "array",
+      "$ref": "#/definitions/User"
+    }
+  }
+}
