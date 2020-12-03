@@ -8,9 +8,10 @@
     "serverUrlWebUrlLink": "localhost:8080/",
     "secretKey":"vOVH6sdmpNWjRRIqCc7rdxs01lwHzfr3",
     "database": {
-      "host": "192.168.64.2",
+      "host": "mysql",
       "user": "root",
-      "password": "",
+      "port": 3306,
+      "password": "password",
       "database": "voting",
       "dialect": "mysql"
     }

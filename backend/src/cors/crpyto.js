@@ -18,8 +18,8 @@ const decrypt = (encrypted) => {
   const decipher = crypto.createDecipher(algorithm, secretKey);
 
   const decrypted = decipher.update(encrypted, 'hex', 'utf8') + decipher.final('utf8');
-  
-  return decrpyted;
+
+  return decrypted;
 };
 
 module.exports = {

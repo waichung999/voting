@@ -231,9 +231,26 @@
         }
       }
     },
-    "campaigns": {
-      "type": "array",
-      "$ref": "#/definitions/campaign"
+    "voteOptions": {
+      "properties": {
+        "id": {
+          "type": "integer",
+          "uniqueItems": true
+        },
+        "option_name": {
+          "type": "string"
+        },
+        "user_votes":{
+          "type": "array",
+          "items": {
+            "properties": {
+              "count": {
+                "type": "integer"
+              }
+            }
+          }
+        }
+      }
     },
     "campaign":{
       "properties": {
@@ -259,51 +276,16 @@
         "updatedAt": {
           "type": "string",
           "format": "date-time"
+        },
+        "vote_options": {
+          "type": "array",
+          "$ref": "#/definitions/voteOptions"
         }
       }
     },
-    "User": {
-      "required": [
-        "name",
-        "_id",
-        "companies"
-      ],
-      "properties": {
-        "_id": {
-          "type": "integer",
-          "uniqueItems": true
-        },
-        "isPublic": {
-          "type": "boolean"
-        },
-        "name": {
-          "type": "string"
-        },
-        "books": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "properties": {
-              "name": {
-                "type": "string"
-              },
-              "amount": {
-                "type": "number"
-              }
-            }
-          }
-        },
-        "companies": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        }
-      }
-    },
-    "Users": {
+    "campaigns": {
       "type": "array",
-      "$ref": "#/definitions/User"
+      "$ref": "#/definitions/campaign"
     }
   }
 }

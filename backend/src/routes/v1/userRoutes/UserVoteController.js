@@ -1,6 +1,5 @@
 const appRoot = require('app-root-path') + '/src/';
 const reqResponse = require(appRoot + 'cors/responseHandler');
-const { validationResult } = require('express-validator');
 const Validation = require(appRoot + 'validation/UserValidation')
 const db = require(appRoot + 'models')
 const jwt = require('jsonwebtoken')
@@ -13,7 +12,7 @@ module.exports = {
     if(Validation.isHKID(hkid)) {
       hkid = encrypt(hkid)
 
-      const [user, created] = await db.user.findOrCreate({
+      const [user] = await db.user.findOrCreate({
         where: { hkid: hkid },
         defaults: {
           hkid: hkid
@@ -36,7 +35,7 @@ module.exports = {
       res.status(200).send(reqResponse.sucessResponse(200, false, {}, "投票已完結"));
       return false;
     }
-    const [userVote, created] = await db.user_vote.findOrCreate({
+    const [created] = await db.user_vote.findOrCreate({
       where: {campaign_id:body.campaign_id,user_id:user.id},
       defaults:body
     });

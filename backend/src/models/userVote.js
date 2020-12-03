@@ -28,8 +28,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   });
   UserVote.associate = function(models) {
-    UserVote.belongsTo(models.campaign,{foreignKey:'id',sourceKey:'campaign_id'});
-    UserVote.hasOne(models.vote_option,{foreignKey:'id',sourceKey:'option_id'});
+    UserVote.belongsTo(models.campaign,{foreignKey:'campaign_id',sourceKey:'id'});
   };
   return UserVote;
 

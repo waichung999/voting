@@ -10,9 +10,11 @@ const dbConfig = config.get(`${mode}.database`)
 const Sequelize = require("sequelize");
 const sequelize = new Sequelize(dbConfig.database, dbConfig.user, dbConfig.password, {
   host: dbConfig.host,
-  dialect: dbConfig.dialect,
-  logging: false
+  port: dbConfig.port,
+  dialect: dbConfig.dialect
 });
+
+sequelize.sync()
 
 const db = {};
 
