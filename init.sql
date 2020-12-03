@@ -10,8 +10,8 @@ CREATE TABLE IF NOT EXISTS `users` (
   `updatedAt` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-/*ALTER TABLE `users`
-ADD PRIMARY KEY (`id`);*/
+ALTER TABLE `users`
+ADD PRIMARY KEY (`id`);
 
 
 CREATE TABLE IF NOT EXISTS `campaigns` (
@@ -23,12 +23,12 @@ CREATE TABLE IF NOT EXISTS `campaigns` (
   `updatedAt` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-/*INSERT INTO `campaigns` (`id`, `name`, `start_time`, `end_time`, `createdAt`, `updatedAt`) VALUES
+INSERT INTO `campaigns` (`id`, `name`, `start_time`, `end_time`, `createdAt`, `updatedAt`) VALUES
 (1, 'Who is the best NBA player in the history', '2020-12-01 00:00:00', '2020-12-02 00:00:00', '2020-12-01 00:00:00', '2020-12-01 00:00:00'),
-(2, 'Which HK CEO candidate you are preferred.', '2020-09-01 00:00:00', '2021-01-01 21:44:00', '2020-12-01 00:00:00', '2020-12-01 00:00:00');*/
+(2, 'Which HK CEO candidate you are preferred.', '2020-09-01 00:00:00', '2021-01-01 21:44:00', '2020-12-01 00:00:00', '2020-12-01 00:00:00');
 
-/*ALTER TABLE `campaigns`
-ADD PRIMARY KEY (`id`);*/
+ALTER TABLE `campaigns`
+ADD PRIMARY KEY (`id`);
 
 
 CREATE TABLE IF NOT EXISTS `vote_options` (
@@ -39,7 +39,7 @@ CREATE TABLE IF NOT EXISTS `vote_options` (
   `updatedAt` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;*/
 
-/*INSERT INTO `vote_options` (`id`, `option_name`, `campaign_id`, `createdAt`, `updatedAt`) VALUES
+INSERT INTO `vote_options` (`id`, `option_name`, `campaign_id`, `createdAt`, `updatedAt`) VALUES
 (1, 'Michael Jordan', 1, '2020-12-01 05:11:06', '2020-12-01 05:11:06'),
 (2, 'Kobe Bryant', 1, '2020-12-01 05:11:33', '2020-12-01 05:11:33'),
 (3, 'Leborn James', 1, '2020-12-01 05:11:56', '2020-12-01 05:11:56'),
@@ -48,11 +48,11 @@ CREATE TABLE IF NOT EXISTS `vote_options` (
 (6, 'John Tsang', 2, '2020-12-01 16:29:21', '2020-12-01 16:29:21'),
 (7, 'Rebecca Ip', 2, '2020-12-02 00:00:00', '2020-12-02 00:00:00');*/
 
-/*ALTER TABLE `vote_options`
+ALTER TABLE `vote_options`
 ADD PRIMARY KEY (`id`),
 ADD KEY `campaign_id` (`campaign_id`);
 ALTER TABLE `vote_options`
-ADD CONSTRAINT `vote_options_ibfk_1` FOREIGN KEY (`campaign_id`) REFERENCES `campaigns` (`id`);*/
+ADD CONSTRAINT `vote_options_ibfk_1` FOREIGN KEY (`campaign_id`) REFERENCES `campaigns` (`id`);
 
 
 CREATE TABLE IF NOT EXISTS `user_votes` (
@@ -65,7 +65,7 @@ CREATE TABLE IF NOT EXISTS `user_votes` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 
-/*ALTER TABLE `user_votes`
+ALTER TABLE `user_votes`
 ADD PRIMARY KEY (`id`),
 ADD KEY `campaign_id` (`campaign_id`),
 ADD KEY `user_id` (`user_id`),
@@ -74,5 +74,5 @@ ADD KEY `user_votes_ibfk_3` (`option_id`);
 ALTER TABLE `user_votes`
 ADD CONSTRAINT `user_votes_ibfk_1` FOREIGN KEY (`campaign_id`) REFERENCES `campaigns` (`id`),
 ADD CONSTRAINT `user_votes_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`),
-ADD CONSTRAINT `user_votes_ibfk_3` FOREIGN KEY (`option_id`) REFERENCES `vote_options` (`id`);*/
+ADD CONSTRAINT `user_votes_ibfk_3` FOREIGN KEY (`option_id`) REFERENCES `vote_options` (`id`);
 COMMIT;
