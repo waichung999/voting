@@ -1,5 +1,12 @@
 version: '3.2'
 services:
+    web:
+        image: voting-web
+        container_name: web
+        volumes:
+            - ./usr/src/web
+        ports:
+            - "8081:8080"
     server:
         image: voting-server
         container_name: server
@@ -9,24 +16,18 @@ services:
             - "8080:8080"
         depends_on:
             - mysql
-    web:
-        image: voting-web
-        container_name: web
-        volumes:
-            - ./usr/src/web
-        ports:
-            - "8081:8080"
+        command: ["/wait-for-it.sh" ,"mysql:3306" ,"-t" ,"0" ,"--" ,"node" ,"src/server.js"]
     mysql:
         image: mysql
-        command: --init-file init.sql
         container_name: mysqldatabase
         ports:
             - "3306:3306"
         expose:
-            - 3307
+            - 3306
         volumes:
             - ./data:/var/lib/mysql
-            - ./init.sql:/var/lib/mysql/init.sql
+            - ./mysql/init:/docker-entrypoint-initdb.d/
+            - ./mysql/cnf/custom.cnf:/etc/mysql/conf.d/custom.cnf
         environment:
           - MYSQL_ROOT_PASSWORD=password
           - MYSQL_DATABASE=voting
