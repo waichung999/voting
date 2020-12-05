@@ -7,7 +7,7 @@ const secretKey = config.get(`${mode}.secretKey`)
 const iv = crypto.randomBytes(16);
 
 const encrypt = (text) => {
-  const cipher = crypto.createCipher(algorithm, secretKey, iv);
+  const cipher = crypto.createCipheriv(algorithm, secretKey, iv);
 
   const encrypted = cipher.update(text, 'utf8', 'hex') + cipher.final('hex');
 

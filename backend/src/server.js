@@ -34,7 +34,6 @@ app.listen(config.get(`${mode}.port`), () => {
   console.log(chalk.green(`Port:\t\t${config.get(`${mode}.port`)}`)); //eslint-disable-line
   console.log(chalk.green(`Mode:\t\t${config.get(`${mode}.mode`)}`)); //eslint-disable-line
   console.log(chalk.green(`App version:\t${pack.version}`)); //eslint-disable-line
-  console.log(chalk.green("database connection is established"));
   console.log(chalk.yellow('.......................................')); //eslint-disable-line
 })
 module.exports = app
