@@ -24,3 +24,26 @@ docker-compose up -d
 | API Docs | http://localhost:8080/api-docs |
 | API End Point | http://localhost:8080/v1 |
 | Voting Page | http://localhost:8081 |
+
+
+## Command for server side
+
+### run by dev config
+```
+npm run dev
+```
+
+### run by production config
+```
+npm run prod
+```
+
+### run eslint
+```
+npm run lint
+```
+
+### run test case
+```
+npm run test
+```
