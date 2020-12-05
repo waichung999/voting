@@ -29,7 +29,7 @@ const actions = {
     }}).then(response => {
       if (response.data.success === true) {
         alert(response.data.message)
-        router.push('campaign')
+        router.push(`/campaign`)
       } else {
         alert(response.data.message)
       }

@@ -35,14 +35,14 @@ module.exports = {
       res.status(200).send(reqResponse.sucessResponse(200, false, {}, "投票已完結"));
       return false;
     }
-    const [created] = await db.user_vote.findOrCreate({
+    const [result,created] = await db.user_vote.findOrCreate({
       where: {campaign_id:body.campaign_id,user_id:user.id},
       defaults:body
     });
     if (created) {
-      res.status(200).send(reqResponse.sucessResponse(200, created, {}, "Vote successful"));
+      res.status(200).send(reqResponse.sucessResponse(200, true, {}, "Vote successful"));
     } else {
-      res.status(200).send(reqResponse.sucessResponse(200, created, {}, "每個身份證碼只可投票一次"));
+      res.status(200).send(reqResponse.sucessResponse(200, false, {}, "每個身份證碼只可投票一次"));
     }
   },
   getVoteRecord: async (req, res) => {
