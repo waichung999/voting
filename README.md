@@ -3,14 +3,14 @@
 ## Build server docker image
 ```
 cd backend
-docker build -t voting-server .
+docker build --no-cache -t voting-server .
 cd ..
 ```
 
 ## Build Web docker image
 ```
 cd frontend
-docker build -t voting-web .
+docker build --no-cache -t voting-web .
 cd ..
 ```
 
