@@ -18,5 +18,5 @@ RUN npm install
 COPY . .
 
 EXPOSE 8080
-ENV NODE_ENV=dev
+ENV NODE_ENV=prod
 CMD [ "node", "src/server.js" ]

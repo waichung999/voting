@@ -1,17 +1,17 @@
 {
-  "dev": {
-    "name": "Voting System - Dev Mode",
+  "prod": {
+    "name": "Voting System - Production Mode",
     "port": 8080,
-    "mode": "development",
+    "mode": "Production",
     "protocol": "http",
     "serverUrl": "localhost",
     "serverUrlWebUrlLink": "localhost:8080/",
     "secretKey":"vOVH6sdmpNWjRRIqCc7rdxs01lwHzfr3",
     "database": {
-      "host": "192.168.64.2",
+      "host": "mysql",
       "user": "root",
       "port": 3306,
-      "password": "",
+      "password": "password",
       "database": "voting",
       "dialect": "mysql"
     }

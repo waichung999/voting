@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "NODE_ENV=dev nodemon --inspect=8080 --config nodemon.js src/server.js",
+    "prod": "NODE_ENV=prod nodemon --inspect=8080 --config nodemon.js src/server.js",
     "lint": "eslint src/*/*.js",
     "test": "NODE_ENV=dev mocha src/test/test.js"
   },
